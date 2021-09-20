@@ -1,5 +1,6 @@
 name: Build and Deploy
-on:[push]
+on: [push]
+
 jobs:
   build:
     name: Build
@@ -34,5 +35,3 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-          
