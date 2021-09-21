@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 // Utils
 import { handleSumTotal } from '../utils/index';
@@ -44,24 +45,29 @@ function Checkout() {
     ));
 
   return (
-    <div className="Checkout">
-      <div className="Checkout-content">
-        <h3>Lista de pedidos:</h3>
-        {cart.length > 0
-          ? displayCartItems()
-          : 'No tienes ningún item en el carrito de compras.'}
-      </div>
-
-      {/* Sidebar */}
-      {cart.length > 0 && (
-        <div className="Checkout-sidebar">
-          <h3>{`Precio Total: $ ${handleSumTotal(cart)}`}</h3>
-          <Link to="/checkout/information">
-            <button type="button">Continuar pedido</button>
-          </Link>
+    <>
+      <Helmet>
+        <title>Lista de pedidos - Platzi Conf Merch</title>
+      </Helmet>
+      <div className="Checkout">
+        <div className="Checkout-content">
+          <h3>Lista de pedidos:</h3>
+          {cart.length > 0
+            ? displayCartItems()
+            : 'No tienes ningún item en el carrito de compras.'}
         </div>
-      )}
-    </div>
+
+        {/* Sidebar */}
+        {cart.length > 0 && (
+          <div className="Checkout-sidebar">
+            <h3>{`Precio Total: $ ${handleSumTotal(cart)}`}</h3>
+            <Link to="/checkout/information">
+              <button type="button">Continuar pedido</button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
